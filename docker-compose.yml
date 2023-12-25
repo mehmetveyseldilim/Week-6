@@ -1,0 +1,50 @@
+version: '3.5'
+
+networks:
+  weeksix:
+    driver: bridge
+
+services:
+  dvdrental-postgres:
+    container_name: dvdrental-postgres-container
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: dvdrental
+      POSTGRES_PASSWORD: dvdrental
+      POSTGRES_DB: dvdrental
+    ports:
+      - "6632:5432"
+    networks:
+      - weeksix
+    healthcheck:
+      test: pg_isready -U dvdrental -d dvdrental
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: unless-stopped
+    volumes:
+      - weeksix_postgres_data:/var/lib/postgresql/data/
+      # - ./project/data/restore.sql:/docker-entrypoint-initdb.d/restore.sql
+
+  dvdrental-pgadmin:
+    container_name: dvdrental-container-pgadmin
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - dvdrental-postgres
+    ports:
+      - "6630:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    networks:
+      - weeksix
+    restart: unless-stopped
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  pgadmin-data:
+    driver: local
+  weeksix_postgres_data:

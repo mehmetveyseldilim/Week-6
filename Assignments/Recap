@@ -1,0 +1,70 @@
+/*
+Genel Tekrar
+
+
+Bu çalışmamamızda şimdiye kadar üzerine konuştuğumuz tüm konuları 5 farklı senaryo üzerinden tekrar etmeye çalıştık. Aşağıda ilgili senaryoları bulabilirsiniz.
+
+
+    film tablosundan 'K' karakteri ile başlayan en uzun ve replacenet_cost u en düşük 4 filmi sıralayınız.
+    film tablosunda içerisinden en fazla sayıda film bulunduran rating kategorisi hangisidir?
+    cutomer tablosunda en çok alışveriş yapan müşterinin adı nedir?
+    category tablosundan kategori isimlerini ve kategori başına düşen film sayılarını sıralayınız.
+    film tablosunda isminde en az 4 adet 'e' veya 'E' karakteri bulunan kç tane film vardır?
+
+
+Kolay Gelsin
+
+*/
+
+
+-- Q1)
+
+-- film tablosundan 'K' karakteri ile başlayan en uzun ve replacenet_cost u en düşük 4 filmi sıralayınız.
+
+SELECT * FROM public.Film WHERE Film.title LIKE 'K%' ORDER BY Film.length DESC, Film.replacement_cost ASC LIMIT 4;
+
+
+
+-- Q2)
+
+-- film tablosunda içerisinden en fazla sayıda film bulunduran rating kategorisi hangisidir?
+
+SELECT Film.rating, COUNT(*) FROM public.Film GROUP BY Film.rating ORDER BY COUNT(*) DESC LIMIT 1;
+
+
+-- Q3)
+
+-- customer tablosunda en çok alışveriş yapan müşterinin adı nedir?
+
+SELECT * FROM public.Customer;
+SELECT * FROM public.Payment;
+
+SELECT Customer.customer_id, Customer.first_name, Customer.last_name, SUM(Payment.amount) 
+FROM public.Customer 
+INNER JOIN public.Payment ON Customer.customer_id = Payment.customer_id 
+GROUP BY Customer.customer_id 
+ORDER BY SUM(Payment.amount) DESC 
+LIMIT 1;
+
+SELECT c.customer_id, c.first_name, c.last_name, SUM(p.amount)
+FROM public.Customer c
+INNER JOIN public.Payment p ON c.customer_id = p.customer_id
+GROUP BY c.customer_id
+ORDER BY SUM(p.amount) DESC
+LIMIT 1;
+
+
+-- Q4)
+
+-- category tablosundan kategori isimlerini ve kategori başına düşen film sayılarını sıralayınız.
+
+SELECT c.name, COUNT(*) count FROM public.Category c LEFT JOIN public.film_category f ON f.category_id = c.category_id GROUP BY c.category_id ORDER BY count DESC;
+
+
+-- Q5)
+
+-- film tablosunda isminde en az 4 adet 'e' veya 'E' karakteri bulunan kaç tane film vardır?
+
+SELECT COUNT(*) FROM public.Film f WHERE f.title ILIKE '%e%e%e%e%e';
+
+SELECT * FROM public.Film f WHERE f.title ILIKE '%e%e%e%e%e';

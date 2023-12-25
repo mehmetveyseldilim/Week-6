@@ -1,0 +1,113 @@
+/*
+
+Merhabalar,
+
+    1) test veritabanınızda employee isimli sütun bilgileri id(INTEGER), name VARCHAR(50), birthday DATE, email VARCHAR(100) olan bir tablo oluşturalım.
+    2) Oluşturduğumuz employee tablosuna 'Mockaroo' servisini kullanarak 50 adet veri ekleyelim.
+    3) Sütunların her birine göre diğer sütunları güncelleyecek 5 adet UPDATE işlemi yapalım.
+    4) Sütunların her birine göre ilgili satırı silecek 5 adet DELETE işlemi yapalım.
+
+Kolay Gelsin.
+*/
+
+-- Q1)
+
+CREATE TABLE Employee
+(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	birthday DATE,
+	email VARCHAR(100)
+	
+);
+
+
+-- Q2)
+
+insert into public.Employee (id, name, birthday, email) values (1, 'Nicolle Brailsford', '1999-08-30', null);
+insert into public.Employee (id, name, birthday, email) values (2, 'Natty Govier', '1970-12-27', 'ngovier1@dailymail.co.uk');
+insert into public.Employee (id, name, birthday, email) values (3, 'Oswell Prinett', null, null);
+insert into public.Employee (id, name, birthday, email) values (4, 'Lesley Bretherton', '1977-07-10', 'lbretherton3@who.int');
+insert into public.Employee (id, name, birthday, email) values (5, 'Joela Raccio', '1980-05-29', 'jraccio4@loc.gov');
+insert into public.Employee (id, name, birthday, email) values (6, 'Kyrstin Scotchmoor', null, 'kscotchmoor5@cmu.edu');
+insert into public.Employee (id, name, birthday, email) values (7, 'Consolata Thomelin', '1961-10-25', null);
+insert into public.Employee (id, name, birthday, email) values (8, 'Quent Burles', '1988-07-16', 'qburles7@vistaprint.com');
+insert into public.Employee (id, name, birthday, email) values (9, 'Art Ellson', null, null);
+insert into public.Employee (id, name, birthday, email) values (10, 'Etty Tudhope', null, 'etudhope9@wordpress.com');
+insert into public.Employee (id, name, birthday, email) values (11, 'Iggie Janson', '1968-09-26', 'ijansona@netscape.com');
+insert into public.Employee (id, name, birthday, email) values (12, 'Rosalie Lechelle', '1961-03-18', null);
+insert into public.Employee (id, name, birthday, email) values (13, 'Filippo Pidler', '1984-01-22', 'fpidlerc@pagesperso-orange.fr');
+insert into public.Employee (id, name, birthday, email) values (14, 'Lynn Dulin', '1974-12-16', null);
+insert into public.Employee (id, name, birthday, email) values (15, 'Meyer Lapre', '1978-05-01', null);
+insert into public.Employee (id, name, birthday, email) values (16, 'Lianna Harral', null, null);
+insert into public.Employee (id, name, birthday, email) values (17, 'Lynsey Paule', null, null);
+insert into public.Employee (id, name, birthday, email) values (18, 'Sumner Futty', null, null);
+insert into public.Employee (id, name, birthday, email) values (19, 'Cristin Pentelo', '1993-10-17', null);
+insert into public.Employee (id, name, birthday, email) values (20, 'Seline Aish', null, null);
+insert into public.Employee (id, name, birthday, email) values (21, 'Rabbi Hilliam', '1969-10-26', null);
+insert into public.Employee (id, name, birthday, email) values (22, 'Jorie Rosthorn', '1996-10-31', null);
+insert into public.Employee (id, name, birthday, email) values (23, 'Amabelle Buttress', '1988-11-03', 'abuttressm@so-net.ne.jp');
+insert into public.Employee (id, name, birthday, email) values (24, 'Delmer Plenderleith', null, 'dplenderleithn@sphinn.com');
+insert into public.Employee (id, name, birthday, email) values (25, 'Marris Tattershall', null, 'mtattershallo@seesaa.net');
+insert into public.Employee (id, name, birthday, email) values (26, 'Dermot Newlyn', '1996-04-27', 'dnewlynp@bloomberg.com');
+insert into public.Employee (id, name, birthday, email) values (27, 'Prent Over', '1969-02-06', null);
+insert into public.Employee (id, name, birthday, email) values (28, 'Heidi Filby', '1977-05-26', null);
+insert into public.Employee (id, name, birthday, email) values (29, 'Cornelius Ivasyushkin', '1987-07-12', null);
+insert into public.Employee (id, name, birthday, email) values (30, 'Valdemar Fulker', '1996-11-11', null);
+insert into public.Employee (id, name, birthday, email) values (31, 'Livvyy Withinshaw', '1976-07-14', null);
+insert into public.Employee (id, name, birthday, email) values (32, 'Jarib McPhilemy', '1971-11-16', null);
+insert into public.Employee (id, name, birthday, email) values (33, 'Octavia Sangra', '1998-03-27', null);
+insert into public.Employee (id, name, birthday, email) values (34, 'Faunie Titcom', '1982-04-28', 'ftitcomx@unesco.org');
+insert into public.Employee (id, name, birthday, email) values (35, 'Tedie Pashenkov', null, 'tpashenkovy@ebay.co.uk');
+insert into public.Employee (id, name, birthday, email) values (36, 'Stephie Sissons', '1994-12-16', 'ssissonsz@chicagotribune.com');
+insert into public.Employee (id, name, birthday, email) values (37, 'Dionis Whimper', null, null);
+insert into public.Employee (id, name, birthday, email) values (38, 'Deanna Jaslem', null, 'djaslem11@symantec.com');
+insert into public.Employee (id, name, birthday, email) values (39, 'Bary Grahlmans', null, 'bgrahlmans12@artisteer.com');
+insert into public.Employee (id, name, birthday, email) values (40, 'Rafferty Gerckens', '1984-02-07', null);
+insert into public.Employee (id, name, birthday, email) values (41, 'Blake Challenger', null, null);
+insert into public.Employee (id, name, birthday, email) values (42, 'Anatole Finnan', '1970-01-14', 'afinnan15@fotki.com');
+insert into public.Employee (id, name, birthday, email) values (43, 'Tony Larcombe', '1975-08-31', null);
+insert into public.Employee (id, name, birthday, email) values (44, 'Winnie Milborn', null, null);
+insert into public.Employee (id, name, birthday, email) values (45, 'Aldrich Wallington', '1987-07-16', null);
+insert into public.Employee (id, name, birthday, email) values (46, 'Homer Raccio', null, 'hraccio19@umich.edu');
+insert into public.Employee (id, name, birthday, email) values (47, 'Melisandra Boord', '1977-11-28', 'mboord1a@cdc.gov');
+insert into public.Employee (id, name, birthday, email) values (48, 'Indira Lantoph', '1972-04-07', 'ilantoph1b@cisco.com');
+insert into public.Employee (id, name, birthday, email) values (49, 'Eduard Wetherburn', null, 'ewetherburn1c@amazon.co.uk');
+insert into public.Employee (id, name, birthday, email) values (50, 'Karee Josefsen', '1965-03-13', null);
+
+
+SELECT * FROM public.Employee ORDER BY Employee.id;
+
+
+-- Q3
+
+UPDATE public.Employee SET name = 'TestName' WHERE Employee.id IN (1,2,3,4,5);
+
+UPDATE public.Employee SET email = NULL WHERE Employee.name = 'Iggie Janson';
+
+UPDATE public.Employee SET birthday = CURRENT_DATE - INTERVAL '25 years' WHERE id = 15;
+
+UPDATE public.Employee SET name = 'Hazard' WHERE Employee.email = 'qburles7@vistaprint.com';
+
+UPDATE public.Employee SET birthday = null WHERE Employee.name IN ('TestName', 'Hazard');
+
+
+-- Q4
+
+DELETE FROM public.Employee WHERE Employee.name IN ('TestName', 'Hazard');
+
+DELETE FROM public.Employee WHERE Employee.id > 45;
+
+DELETE FROM public.Employee WHERE Employee.id < 25;
+
+DELETE FROM public.Employee WHERE Employee.birthday < '1980.01.01';
+
+DELETE FROM public.Employee WHERE Employee.email ILIKE 'd%';
+
+
+
+DROP TABLE public.Employee;
+
+
+
+

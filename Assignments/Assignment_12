@@ -1,0 +1,56 @@
+/*
+
+Ödev 12
+
+Merhabalar,
+
+Aşağıdaki sorgu senaryolarını dvdrental örnek veri tabanı üzerinden gerçekleştiriniz.
+
+
+    1) film tablosunda film uzunluğu length sütununda gösterilmektedir. Uzunluğu ortalama film uzunluğundan fazla kaç tane film vardır?
+    2) film tablosunda en yüksek rental_rate değerine sahip kaç tane film vardır?
+    3) film tablosunda en düşük rental_rate ve en düşün replacement_cost değerlerine sahip filmleri sıralayınız.
+    4) payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
+
+
+
+Kolay Gelsin.
+
+*/
+
+
+-- Q1
+
+SELECT COUNT(*) FROM public.Film WHERE Film.length > (SELECT AVG(Film.length) FROM public.Film);
+
+
+-- Q2
+
+SELECT COUNT(*) FROM public.Film WHERE Film.rental_rate >= (SELECT Max(Film.rental_rate) FROM public.Film);
+
+
+-- Q3
+
+SELECT * FROM public.Film WHERE (Film.rental_rate, Film.replacement_cost) = (SELECT MIN(Film.rental_rate), MIN(Film.replacement_cost) FROM public.Film);
+
+
+-- Q4
+
+SELECT
+  c.customer_id,
+  c.first_name,
+  c.last_name,
+  (
+    SELECT COUNT(payment_id)
+    FROM payment
+    WHERE customer_id = c.customer_id
+  ) AS total_purchases
+FROM
+  customer c
+ORDER BY
+  total_purchases DESC
+
+
+
+
+

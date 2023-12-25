@@ -1,0 +1,37 @@
+SELECT AVG(Film.length) FROM public.Film;
+
+SELECT MIN(Film.length) FROM public.Film;
+
+SELECT MAX(Film.length) FROM public.Film;
+
+SELECT SUM(Film.length) FROM public.Film;
+
+/*
+
+Merhabalar,
+
+Aşağıdaki sorgu senaryolarını dvdrental örnek veri tabanı üzerinden gerçekleştiriniz.
+
+    film tablosunda bulunan rental_rate sütunundaki değerlerin ortalaması nedir?
+    film tablosunda bulunan filmlerden kaç tanesi 'C' karakteri ile başlar?
+    film tablosunda bulunan filmlerden rental_rate değeri 0.99 a eşit olan en uzun (length) film kaç dakikadır?
+    film tablosunda bulunan filmlerin uzunluğu 150 dakikadan büyük olanlarına ait kaç farklı replacement_cost değeri vardır?
+
+Kolay Gelsin.
+
+*/
+-- Q1)
+
+SELECT AVG(Film.rental_rate) FROM public.Film;
+
+-- Q2)
+
+SELECT COUNT(*) FROM public.Film WHERE Film.title LIKE 'C%';
+
+-- Q3)
+
+SELECT MAX(Film.length) FROM public.Film WHERE Film.rental_rate = 0.99;
+
+-- Q4)
+
+SELECT COUNT(DISTINCT(Film.replacement_cost)) FROM public.Film WHERE Film.length > 150 ;

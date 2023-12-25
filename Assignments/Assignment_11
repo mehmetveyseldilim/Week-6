@@ -1,0 +1,43 @@
+/*
+
+Ödev 11
+
+Merhabalar,
+
+Aşağıdaki sorgu senaryolarını dvdrental örnek veri tabanı üzerinden gerçekleştiriniz.
+
+
+    1) actor ve customer tablolarında bulunan first_name sütunları için tüm verileri sıralayalım.
+    2) actor ve customer tablolarında bulunan first_name sütunları için kesişen verileri sıralayalım.
+    3) actor ve customer tablolarında bulunan first_name sütunları için ilk tabloda bulunan ancak ikinci tabloda bulunmayan verileri sıralayalım.
+    4) İlk 3 sorguyu tekrar eden veriler için de yapalım.
+
+Kolay Gelsin.
+
+*/
+
+-- Q1)
+SELECT * FROM public.Actor; -- 200 Rows
+SELECT * FROM public.Customer; -- 599 Rows
+SELECT Customer.first_name FROM public.Customer UNION (SELECT Actor.first_name FROM public.Actor); -- 647 Rows
+SELECT Customer.first_name FROM public.Customer UNION ALL (SELECT Actor.first_name FROM public.Actor); -- 799 Rows
+
+
+-- Q2)
+
+SELECT * FROM public.Actor; -- 200 Rows
+SELECT * FROM public.Customer; -- 599 Rows
+SELECT Customer.first_name FROM public.Customer INTERSECT (SELECT Actor.first_name FROM public.Actor); -- 72 Rows Rows
+SELECT Customer.first_name FROM public.Customer INTERSECT ALL (SELECT Actor.first_name FROM public.Actor); -- 72 Rows
+
+
+-- Q3)
+
+SELECT * FROM public.Actor; -- 200 Rows
+SELECT * FROM public.Customer; -- 599 Rows
+SELECT Customer.first_name FROM public.Customer EXCEPT (SELECT Actor.first_name FROM public.Actor); -- 519 Rows Rows
+SELECT Customer.first_name FROM public.Customer EXCEPT ALL (SELECT Actor.first_name FROM public.Actor); -- 527 Rows
+
+
+
+
